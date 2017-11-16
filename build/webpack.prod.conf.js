@@ -13,7 +13,9 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
-
+function resolveApp(relativePath) {
+  return path.resolve(relativePath);
+}
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -53,8 +55,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
-      ? { safe: true, map: { inline: false } }
-      : { safe: true }
+        ? { safe: true, map: { inline: false } }
+        : { safe: true }
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -65,6 +67,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         : config.build.index,
       template: 'index.html',
       inject: true,
+      favicon: resolveApp('favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
