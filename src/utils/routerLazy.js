@@ -1,0 +1,1 @@
+module.exports = process.env.NODE_ENV === 'production' ? file => () => require('@/modules/' + file + '.vue') : file => require('@/modules/' + file + '.vue').default
