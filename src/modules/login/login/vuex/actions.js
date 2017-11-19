@@ -1,10 +1,11 @@
-import { login, logout, getInfo } from './api'
+import { login, logout, getInfo, getMenu } from './api'
 import { setToken, removeToken } from '@/utils/auth'
 import {
   SET_TOKEN,
   SET_NAME,
   SET_AVATAR,
-  SET_ROLES
+  SET_ROLES,
+  GET_MENU
 } from './mutation-types'
 export default {
   // 登录
@@ -21,7 +22,19 @@ export default {
       })
     })
   },
-
+  // 获取菜单
+  GetMenu({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMenu().then(response => {
+        const data = response.data
+        console.log(response)
+        commit(GET_MENU, data.menus)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   // 获取用户信息
   GetInfo({ commit, state }) {
     return new Promise((resolve, reject) => {

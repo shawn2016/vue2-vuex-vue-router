@@ -30,8 +30,9 @@
 </template>
 
 <script>
+let routers = [];
 import { isvalidUsername } from "@/utils/validate";
-
+import MenuUtils from "@/utils/MenuUtils";
 export default {
   name: "login",
   data() {
@@ -72,7 +73,11 @@ export default {
             .dispatch("Login", this.loginForm)
             .then(() => {
               this.loading = false;
-              this.$router.push({ path: "/" });
+              // window.sessionStorage.setItem("userInfo", JSON.stringify(data));
+              // MenuUtils(routers, data);
+              // this.$router.addRoutes(routers);
+              // this.$router.push({ path: "/" });
+              this.getMenu();
             })
             .catch(() => {
               this.loading = false;
@@ -81,6 +86,16 @@ export default {
           console.log("error submit!!");
           return false;
         }
+      });
+    },
+    getMenu() {
+      this.$store.dispatch("GetMenu").then(res => {
+        console.log(res);
+        window.sessionStorage.setItem("userInfo", JSON.stringify(res.menus));
+        MenuUtils(routers, res.menus);
+        console.log(routers);
+        this.$router.addRoutes(routers);
+        this.$router.push({ path: "/" });
       });
     }
   }

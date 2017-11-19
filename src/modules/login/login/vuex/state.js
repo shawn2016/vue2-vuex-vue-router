@@ -1,7 +1,7 @@
 import { getToken } from '@/utils/auth'
 export default {
-    token: getToken(),
-    name: '',
-    avatar: '',
-    roles: []
+  token: getToken(),
+  name: '',
+  avatar: '',
+  roles: []
 }

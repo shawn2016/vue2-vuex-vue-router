@@ -25,3 +25,10 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getMenu() {
+  return fetch({
+    url: '/user/getMenu',
+    method: 'post'
+  })
+}

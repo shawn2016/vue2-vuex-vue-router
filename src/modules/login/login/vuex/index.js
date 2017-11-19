@@ -1,4 +1,3 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
 import mutations from './mutations'
 import state from './state'
 import actions from './actions'

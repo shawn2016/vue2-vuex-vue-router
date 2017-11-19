@@ -1,8 +1,8 @@
-import _import from '@/utils/routerLazy'
+import routerLazy from '@/utils/routerLazy'
 export default [
-    {
-        path: '/login',
-        component: _import('login/login/index'),
-        hidden: true
-    }
+  {
+    path: '/login',
+    component: routerLazy('login/login/index'),
+    hidden: true
+  }
 ]

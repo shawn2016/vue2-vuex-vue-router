@@ -30,6 +30,12 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',  // ESLint 优先级高于其他 JS 相关的 loader
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import _import from '@/utils/routerLazy'
+import routerLazy from '@/utils/routerLazy'
 // in development env not use Lazy Loading,because Lazy Loading too many pages will cause webpack hot update too slow.so only in production use Lazy Loading
 
 /* layout */
-import Layout from '@/modules/layout/Layout'
 import constantRouterMap from '@/modules/router'
 Vue.use(Router)
 /**
@@ -19,7 +18,7 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [{
     path: '/404',
-    component: _import('404'),
+    component: routerLazy('404'),
     hidden: true
   }, {
     path: '*',
